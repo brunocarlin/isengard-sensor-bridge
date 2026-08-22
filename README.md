@@ -1,5 +1,7 @@
 # Isengard Sensor Bridge
 
+[English](README.md) · [Português (Brasil)](README.pt-BR.md)
+
 > A standalone, reversible sensor bridge for the SuperFrame Isengard display and CpuTemp 1.0.15—built because an 8,000 RPM “fan” and a missing pump reading were too ridiculous to ignore.
 
 [![Windows](https://img.shields.io/badge/Windows-11-0078D4?logo=windows11)](https://www.microsoft.com/windows/)
