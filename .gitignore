@@ -1,0 +1,9 @@
+artifacts/
+bin/
+obj/
+*.user
+*.suo
+*.pdb
+CpuTempFanBridge.config.json
+sensors.txt
+*.tmp

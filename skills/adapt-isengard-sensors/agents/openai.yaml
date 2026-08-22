@@ -1,0 +1,4 @@
+interface:
+  display_name: "Adapt Isengard Sensors"
+  short_description: "Adapt GPU and display sensor mappings safely"
+  default_prompt: "Use $adapt-isengard-sensors to adapt the Isengard sensor bridge for this hardware or change a displayed metric safely."
