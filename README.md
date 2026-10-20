@@ -72,6 +72,28 @@ The installer:
 - writes sensor data atomically to CpuTemp's `lib` directory;
 - never launches CpuTemp as administrator.
 
+## Start CpuTemp in the tray
+
+For an existing standalone sensor-fix installation of CpuTemp 1.0.15, run:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File installer\Install-CpuTempTrayStart.ps1
+```
+
+Approve the Windows administrator prompt. This add-on backs up the current sensor-patched archive, replaces only the main JavaScript entry, restarts CpuTemp through its existing `StartCpuTemp` task, and writes the result to `installer\tray-start-install.log`. It requires that task to point at the selected CpuTemp installation with `--startupWithMinimize`; the task's privileges and the separate sensor bridge are preserved. Use `-CpuTempDirectory "D:\Apps\CpuTemp"` for a different installation folder.
+
+At logon, CpuTemp remains hidden with its tray available. Renderer background throttling is disabled on that startup path so sensor/device updates can continue. Click the tray icon to reopen the window; manually launching CpuTemp also permits the existing instance to reopen. Ordinary manual starts retain the vendor's behavior. Existing close-to-tray settings still apply.
+
+To undo only this add-on while preserving the sensor fixes:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File installer\Install-CpuTempTrayStart.ps1 -Restore
+```
+
+Restore this add-on before rerunning the original sensor-fix installer. The full sensor-fix restore still returns the app to its original vendor archive. Vendor updates can overwrite this add-on; unsupported archive hashes are refused.
+
+Run the startup behavior tests with `node --test tests/start-in-tray.test.js` (Node.js 18+).
+
 ## Choosing the GPU
 
 The default scoring prefers a GPU with fan sensors, then NVIDIA, AMD, and Intel hardware groups. To override that choice, create `CpuTempFanBridge.config.json` in CpuTemp's `lib` directory:

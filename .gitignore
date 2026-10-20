@@ -7,3 +7,6 @@ obj/
 CpuTempFanBridge.config.json
 sensors.txt
 *.tmp
+
+# Local startup installer result
+installer/tray-start-install.log
