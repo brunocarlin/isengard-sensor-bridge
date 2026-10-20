@@ -1,5 +1,11 @@
 # Isengard Sensor Bridge
 
+## Iniciar na bandeja
+
+Com a correção standalone já instalada no CpuTemp 1.0.15, execute `powershell -NoProfile -ExecutionPolicy Bypass -File installer\Install-CpuTempTrayStart.ps1` e aceite o UAC. O complemento reinicia o CpuTemp pela tarefa existente, mantém a janela oculta no início do Windows e permite abri-la pelo ícone da bandeja. As leituras e a comunicação com o display continuam em segundo plano. A ponte de sensores e os mapeamentos anteriores são preservados.
+
+Para desfazer somente esse complemento, execute o mesmo comando com `-Restore`. O resultado da instalação fica em `installer\tray-start-install.log`. Veja os requisitos e detalhes em [Start CpuTemp in the tray](README.md#start-cputemp-in-the-tray).
+
 [English](README.md) · [Português (Brasil)](README.pt-BR.md)
 
 > Uma ponte de sensores independente e reversível para o display do SuperFrame Isengard e o CpuTemp 1.0.15 — criada porque uma “fan” marcando 8.000 RPM e uma bomba desaparecida não dava para aceitar.
