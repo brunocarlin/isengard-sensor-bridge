@@ -13,7 +13,9 @@ $jsonLength = [BitConverter]::ToUInt32($bytes, 12)
 $header = [Text.Encoding]::UTF8.GetString($bytes, 16, $jsonLength) | ConvertFrom-Json
 $entry = $header.files.out.files.main.files.'index.js'
 if (-not $entry -or $entry.unpacked) { throw 'Packed main entry not found.' }
-$replacementBytes = [IO.File]::ReadAllBytes((Resolve-Path -LiteralPath $Replacement).Path)
+# Keep the pinned archive hash stable across Git's Windows CRLF checkouts.
+$replacementText = [IO.File]::ReadAllText((Resolve-Path -LiteralPath $Replacement).Path)
+$replacementBytes = [Text.Encoding]::UTF8.GetBytes($replacementText.Replace("`r`n", "`n"))
 $entry.offset = [string]($bytes.Length - $payloadOffset)
 $entry.size = $replacementBytes.Length
 $sha = [Security.Cryptography.SHA256]::Create()
